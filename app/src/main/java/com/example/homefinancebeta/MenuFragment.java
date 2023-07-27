@@ -64,15 +64,7 @@ public class MenuFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
 
-        Button btnAddExpenses = view.findViewById(R.id.btnAddExpenses);
-        // Set click listener for btnAddExpenses and handle navigation to AddExpensesFragment
-        btnAddExpenses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavController navController = Navigation.findNavController(view);
-                navController.navigate(R.id.addExpenses);
-            }
-        });
+
 
 
         return view;
