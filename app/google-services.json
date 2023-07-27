@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "56521228295",
+    "project_id": "homefinancebeta",
+    "storage_bucket": "homefinancebeta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56521228295:android:be15a8ac127c4f4b386aa2",
+        "android_client_info": {
+          "package_name": "com.example.homefinancebeta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "56521228295-6av4vlv66cjek3ggho7hamr9ssd1nhhr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3M93a24JWd6stjp1Z0r-IH5UQ7OEQxic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "56521228295-6av4vlv66cjek3ggho7hamr9ssd1nhhr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
