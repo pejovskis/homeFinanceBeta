@@ -1,58 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    tools:context=".Menu">
+    tools:context=".MenuFragment">
 
     <Button
         android:id="@+id/btnAddExpenses"
-        android:layout_width="match_parent"
-        android:text="Add Expenses"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/btnViewExpenses"
-        android:layout_width="match_parent"
-        android:text="View Expenses"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/btnAddSalary"
-        android:layout_width="match_parent"
-        android:text="Add Salary"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/btnCalculations"
-        android:layout_width="match_parent"
-        android:text="Calculations"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/btnFamily"
-        android:layout_width="match_parent"
-        android:text="View Family"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/btnHelp"
-        android:layout_width="match_parent"
-        android:text="Help"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/btnAbout"
-        android:layout_width="match_parent"
-        android:text="About"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:text="Login"
-        android:layout_height="wrap_content" />
-
-</LinearLayout>
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:text="add new Expense" />
+</FrameLayout>

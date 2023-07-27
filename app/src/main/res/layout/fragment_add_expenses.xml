@@ -1,123 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:fillViewport="true"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:windowSoftInputMode="adjustResize|stateAlwaysVisible"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".AddExpenses">
 
-    <LinearLayout
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="16dp">
+        android:layout_height="match_parent"
+        android:textSize="200dp"
+        android:text="@string/hello_blank_fragment" />
 
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Where" />
-
-        <EditText
-            android:id="@+id/inWhere"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:inputType="text" />
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Category" />
-
-        <EditText
-            android:id="@+id/inCategory"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:spinnerMode="dropdown" />
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Essentials" />
-
-        <RadioGroup
-            android:id="@+id/radioGroupOptions"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <RadioButton
-                android:id="@+id/radioButtonYes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yes" />
-
-            <RadioButton
-                android:id="@+id/radioButtonNo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No" />
-
-        </RadioGroup>
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Date" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
-            <DatePicker
-                android:id="@+id/inDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:inputType="date" />
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Price" />
-
-        <EditText
-            android:id="@+id/inPrice"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:inputType="numberDecimal" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnCancel"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Cancel" />
-
-            <Button
-                android:id="@+id/btnAddExpenses"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="Add" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/consoleOutput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Console:" />
-
-    </LinearLayout>
-
-</ScrollView>
+</FrameLayout>
