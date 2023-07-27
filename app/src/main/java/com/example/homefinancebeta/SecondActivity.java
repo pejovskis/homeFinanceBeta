@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 public class SecondActivity extends AppCompatActivity {
 
+    /*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +20,13 @@ public class SecondActivity extends AppCompatActivity {
                     .replace(R.id.menuFragment, new MenuFragment())
                     .commit();
         }
+    }
+    */
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_second);
     }
 
 }
