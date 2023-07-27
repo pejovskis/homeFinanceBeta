@@ -10,9 +10,63 @@
         android:name="com.example.homefinancebeta.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
+    <activity
+        android:id="@+id/secondActivity2"
+        android:name="com.example.homefinancebeta.SecondActivity"
+        android:label="activity_second"
+        tools:layout="@layout/activity_second" />
     <fragment
-        android:id="@+id/menuLayout"
-        android:name="com.example.homefinancebeta.menuLayout"
-        android:label="fragment_menu_layout"
-        tools:layout="@layout/fragment_menu_layout" />
+        android:id="@+id/menu"
+        android:name="com.example.homefinancebeta.Menu"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menu_to_showExpensesTable"
+            app:destination="@id/showExpensesTable" />
+        <action
+            android:id="@+id/action_menu_to_viewCalculations"
+            app:destination="@id/viewCalculations" />
+        <action
+            android:id="@+id/action_menu_to_addSalary"
+            app:destination="@id/addSalary" />
+        <action
+            android:id="@+id/action_menu_to_addExpenses42"
+            app:destination="@id/addExpenses" />
+        <action
+            android:id="@+id/action_menu_to_about2"
+            app:destination="@id/about" />
+        <action
+            android:id="@+id/action_menu_to_help2"
+            app:destination="@id/help" />
+    </fragment>
+    <fragment
+        android:id="@+id/showExpensesTable"
+        android:name="com.example.homefinancebeta.ShowExpensesTable"
+        android:label="fragment_show_expenses_table"
+        tools:layout="@layout/fragment_show_expenses_table" />
+    <fragment
+        android:id="@+id/viewCalculations"
+        android:name="com.example.homefinancebeta.ViewCalculations"
+        android:label="fragment_view_calculations"
+        tools:layout="@layout/fragment_view_calculations" />
+    <fragment
+        android:id="@+id/addSalary"
+        android:name="com.example.homefinancebeta.AddSalary"
+        android:label="fragment_add_salary"
+        tools:layout="@layout/fragment_add_salary" />
+    <fragment
+        android:id="@+id/about"
+        android:name="com.example.homefinancebeta.About"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/help"
+        android:name="com.example.homefinancebeta.Help"
+        android:label="fragment_help"
+        tools:layout="@layout/fragment_help" />
+    <fragment
+        android:id="@+id/addExpenses"
+        android:name="com.example.homefinancebeta.AddExpenses"
+        android:label="fragment_add_expenses"
+        tools:layout="@layout/fragment_add_expenses" />
 </navigation>

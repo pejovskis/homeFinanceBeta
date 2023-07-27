@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".oldApp.Menu">
+    tools:context=".Menu">
 
     <Button
         android:id="@+id/btnAddExpenses"
