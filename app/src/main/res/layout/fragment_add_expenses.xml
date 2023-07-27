@@ -14,4 +14,11 @@
         android:text="@string/hello_blank_fragment"
         android:textSize="50dp" />
 
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="back"
+        android:layout_gravity="center"/>
+
 </FrameLayout>
