@@ -11,11 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import androidx.fragment.app.FragmentManager;
+import androidx.navigation.fragment.NavHostFragment;
 
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link MenuFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class MenuFragment extends Fragment {
@@ -37,19 +37,9 @@ public class MenuFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment MenuFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MenuFragment newInstance(String param1, String param2) {
-        MenuFragment fragment = new MenuFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,12 +58,21 @@ public class MenuFragment extends Fragment {
 
         Button btnAddExpenses = view.findViewById(R.id.btnAddExpenses);
 
-        //btnAddExpenses.setOnClickListener(view1 -> Navigation.findNavController(view1).navigate(R.id.action_menuFragment_to_addExpenses));
-
-
+        btnAddExpenses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigateToAddExpensesFragment();
+            }
+        });
 
 
 
         return view;
     }
+
+    private void navigateToAddExpensesFragment() {
+        NavHostFragment.findNavController(this)
+                .navigate(R.id.action_menuFragment_to_addExpenses);
+    }
+
 }

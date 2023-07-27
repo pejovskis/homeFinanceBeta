@@ -5,28 +5,20 @@
     android:id="@+id/navigation"
     app:startDestination="@id/menuFragment">
 
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.example.homefinancebeta.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
-    <activity
-        android:id="@+id/secondActivity"
-        android:name="com.example.homefinancebeta.SecondActivity"
-        android:label="activity_second"
-        tools:layout="@layout/activity_second" />
     <fragment
         android:id="@+id/menuFragment"
         android:name="com.example.homefinancebeta.MenuFragment"
         android:label="fragment_menu"
-        tools:layout="@layout/fragment_menu" >
+        tools:layout="@layout/fragment_menu">
         <action
             android:id="@+id/action_menuFragment_to_addExpenses"
             app:destination="@id/addExpenses" />
     </fragment>
+
     <fragment
         android:id="@+id/addExpenses"
         android:name="com.example.homefinancebeta.AddExpenses"
         android:label="fragment_add_expenses"
         tools:layout="@layout/fragment_add_expenses" />
+
 </navigation>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_menu"
+    android:id="@+id/fragmentMenu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MenuFragment">
@@ -10,5 +11,7 @@
         android:id="@+id/btnAddExpenses"
         android:layout_width="256dp"
         android:layout_height="wrap_content"
-        android:text="add new Expense" />
+        android:text="add new Expense"
+        android:onClick="navigateToAddExpensesFragment" />
+
 </FrameLayout>
