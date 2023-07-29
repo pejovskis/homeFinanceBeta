@@ -7,18 +7,115 @@
     android:layout_height="match_parent"
     tools:context=".AddExpenses">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- Contents from the second file -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        android:textSize="50dp" />
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp">
 
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:text="back"
-        android:layout_gravity="center"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Where" />
+
+        <EditText
+            android:id="@+id/inWhere"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="text" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Category" />
+
+        <EditText
+            android:id="@+id/inCategory"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Essentials" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupOptions"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/radioButtonYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" />
+
+            <RadioButton
+                android:id="@+id/radioButtonNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Date" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <DatePicker
+                android:id="@+id/inDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:inputType="date" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Price" />
+
+        <EditText
+            android:id="@+id/inPrice"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="numberDecimal" />
+
+    </LinearLayout>
+
+    <!-- Buttons to be shown when needed -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:visibility="visible">
+
+        <Button
+            android:id="@+id/btnAddNewExpense"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="Add New Expense"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="Back"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
 
 </FrameLayout>
