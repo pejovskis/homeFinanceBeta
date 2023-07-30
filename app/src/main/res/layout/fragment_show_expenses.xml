@@ -20,12 +20,6 @@
 
             <TextView
                 android:background="@color/gray"
-                android:padding="3dip"
-                android:text="Id"
-                android:textAlignment="center" />
-
-            <TextView
-                android:background="@color/gray"
                 android:gravity="right"
                 android:padding="3dip"
                 android:text="Where" />

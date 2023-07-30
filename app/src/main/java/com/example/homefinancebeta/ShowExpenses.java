@@ -3,10 +3,12 @@ package com.example.homefinancebeta;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -92,8 +94,24 @@ public class ShowExpenses extends Fragment {
         return view;
     }
 
+    public String getUserId() {
+        // Get the activity that is currently hosting the fragment
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        if (activity != null) {
+            SecondActivity mainActivity = (SecondActivity) activity;
+            String userId = mainActivity.getUserId();
+            return userId;
+        } else {
+            return null;
+        }
+    }
+
     private void retrieveAndDisplayExpenses(View view) {
-        DatabaseReference expensesRef = FirebaseDatabase.getInstance().getReference("expenses");
+
+        String userId = getUserId();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference expensesRef = database.getReference("Users").child(userId).child("expenses");
         expensesRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -102,17 +120,12 @@ public class ShowExpenses extends Fragment {
                 //tableLayoutExpenses.removeAllViews();
 
                 if (dataSnapshot.exists()) {
-                    // If data exists, loop through the children of the "expenses" node
                     for (DataSnapshot expenseSnapshot : dataSnapshot.getChildren()) {
-                        // Retrieve the expense object from the snapshot
                         Expense expense = expenseSnapshot.getValue(Expense.class);
 
-                        // Add the expense data to the table
                         addExpenseToTable(tableLayoutExpenses, expense);
                     }
                 } else {
-                    // If no data exists, add the table headers and show a message
-                    // addTableHeaders(tableLayoutExpenses);
                     addNoDataMessage(tableLayoutExpenses);
                 }
             }
@@ -148,7 +161,6 @@ public class ShowExpenses extends Fragment {
         TableRow row = new TableRow(requireContext());
 
         // Create TextViews to display each attribute of the expense
-        TextView tvId = createTextView(expense.getId());
         TextView tvWhere = createTextView(expense.getWhere());
         TextView tvEssentials = createTextView(expense.getEssentials());
         TextView tvCategory = createTextView(expense.getCategory());
@@ -156,7 +168,6 @@ public class ShowExpenses extends Fragment {
         TextView tvPrice = createTextView(expense.getPrice());
 
         // Add TextViews to the TableRow
-        row.addView(tvId);
         row.addView(tvWhere);
         row.addView(tvEssentials);
         row.addView(tvCategory);
