@@ -100,7 +100,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:visibility="visible">
+        android:visibility="visible"
+        android:gravity="center">
 
         <Button
             android:id="@+id/btnAddNewExpense"

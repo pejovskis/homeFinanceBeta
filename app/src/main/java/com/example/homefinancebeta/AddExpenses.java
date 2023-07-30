@@ -80,8 +80,6 @@ public class AddExpenses extends Fragment {
     private EditText inWhere;
     private EditText inCategory;
     private EditText inPrice;
-    private EditText textInput; // Declare the EditText and TextView as instance variables
-    private TextView console;
     private DatePicker datePicker;
     private RadioGroup inRadioGroup;
 
@@ -119,20 +117,14 @@ public class AddExpenses extends Fragment {
         return view;
     }
 
+    // Back Btn
     private void navigateToPreviousMenu() {
-
         NavController navController = NavHostFragment.findNavController(this);
-
         navController.navigateUp();
-
     }
 
     public void addNewExpense() {
         Expense expense = getNewExpense();
-
-        Log.d("HERE: HERE: HERE: HERE: HERE: " , expense.getWhere() +
-                " " + expense.getCategory() + " " + expense.getDate() +
-                " " + expense.getId() + " " + expense.getPrice() + " " + expense.getEssentials());
 
         if (expense != null) {
             // Get the user ID from MainActivity
@@ -154,7 +146,6 @@ public class AddExpenses extends Fragment {
             Toast.makeText(getActivity(), "Failed to add expense. Please check the form.", Toast.LENGTH_SHORT).show();
         }
     }
-
 
     public Expense getNewExpense() {
 

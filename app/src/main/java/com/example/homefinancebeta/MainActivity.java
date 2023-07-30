@@ -67,8 +67,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
 
 
@@ -85,11 +83,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-
         if (requestCode == RC_SIGN_IN) {
-
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
 
@@ -97,9 +92,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (ApiException e) {
                 throw new RuntimeException(e);
             }
-
         }
-
     }
 
     private void firebaseAuth(String idToken) {
@@ -127,13 +120,9 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             Toast.makeText(MainActivity.this, "error", Toast.LENGTH_SHORT).show();
                         }
-
-
                     }
                 });
-
     }
-
 }
 
 
