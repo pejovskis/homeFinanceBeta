@@ -5,24 +5,79 @@
     android:layout_height="match_parent"
     tools:context=".ShowExpenses">
 
-    <LinearLayout
+    <TableLayout
+        android:id="@+id/tableLayoutExpenses"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="3dip"
+        android:background="@color/white"
+        android:divider="@color/gray"
+        android:dividerHeight="1dp"
+        android:padding="3dip"
+        android:stretchColumns="1">
+
+        <TableRow>
+
+            <TextView
+                android:background="@color/gray"
+                android:padding="3dip"
+                android:text="Id"
+                android:textAlignment="center" />
+
+            <TextView
+                android:background="@color/gray"
+                android:gravity="right"
+                android:padding="3dip"
+                android:text="Where" />
+
+            <TextView
+                android:background="@color/gray"
+                android:gravity="center"
+                android:padding="3dip"
+                android:text="Essentials" />
+
+            <TextView
+                android:background="@color/gray"
+                android:gravity="center"
+                android:padding="3dip"
+                android:text="Category" />
+
+            <TextView
+                android:background="@color/gray"
+                android:gravity="center"
+                android:padding="3dip"
+                android:text="Date" />
+
+            <TextView
+                android:background="@color/gray"
+                android:gravity="center"
+                android:padding="3dip"
+                android:text="Price" />
+        </TableRow>
+    </TableLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical">
+        android:layout_gravity="bottom">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
 
-        <Button
-            android:id="@+id/btnBack"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:text="Back"
-            android:layout_gravity="center"/>
+            <Button
+                android:id="@+id/btnBack"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:text="Back"
+                android:layout_gravity="center"/>
 
-    </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
 
 </FrameLayout>
+
+
+
