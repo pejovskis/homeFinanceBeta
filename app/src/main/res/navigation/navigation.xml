@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_menuFragment_to_addExpenses"
             app:destination="@id/addExpenses" />
+        <action
+            android:id="@+id/action_menuFragment_to_showExpenses"
+            app:destination="@id/showExpenses" />
     </fragment>
 
     <fragment
@@ -20,5 +23,10 @@
         android:name="com.example.homefinancebeta.AddExpenses"
         android:label="fragment_add_expenses"
         tools:layout="@layout/fragment_add_expenses" />
+    <fragment
+        android:id="@+id/showExpenses"
+        android:name="com.example.homefinancebeta.ShowExpenses"
+        android:label="fragment_show_expenses"
+        tools:layout="@layout/fragment_show_expenses" />
 
 </navigation>
