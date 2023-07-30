@@ -8,6 +8,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavHostController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,6 +75,15 @@ public class AddExpenses extends Fragment {
         }
     }
 
+    // Declare the Inputs from the Add Expenses layout
+    private EditText inWhere;
+    private EditText inCategory;
+    private EditText inPrice;
+    private EditText textInput; // Declare the EditText and TextView as instance variables
+    private TextView console;
+    private DatePicker datePicker;
+    private RadioGroup inRadioGroup;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,6 +92,14 @@ public class AddExpenses extends Fragment {
 
         Button btnBack = view.findViewById(R.id.btnBack);
         Button btnAddNewExpense = view.findViewById(R.id.btnAddNewExpense);
+
+        inWhere = view.findViewById(R.id.inWhere);
+        inCategory = view.findViewById(R.id.inCategory);
+        inPrice = view.findViewById(R.id.inPrice);
+        datePicker = view.findViewById(R.id.inDate);
+        inRadioGroup = view.findViewById(R.id.radioGroupOptions);
+
+        // Access The Fields
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,10 +111,9 @@ public class AddExpenses extends Fragment {
         btnAddNewExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addNewExpense(view);
+                addNewExpense();
             }
         });
-
 
         return view;
     }
@@ -109,8 +126,14 @@ public class AddExpenses extends Fragment {
 
     }
 
-        public void addNewExpense(View view) {
-        Expense expense = getNewExpense(view);
+    public void addNewExpense() {
+
+        Expense expense = getNewExpense();
+
+        Log.d("HERE: HERE: HERE: HERE: HERE: " , expense.getWhere() +
+                " " + expense.getCategory() + " " + expense.getDate() +
+                " " + expense.getId() + " " + expense.getPrice() + " " + expense.getEssentials());
+
 
         if (expense != null) {
             // Write a message to the database
@@ -119,53 +142,22 @@ public class AddExpenses extends Fragment {
 
             DatabaseReference newExpenseRef = expensesRef.push();
 
-            newExpenseRef.setValue(expense)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                // Data successfully added to the database
-                                // Do something if needed
-                            } else {
-                                // Handle the case where data upload failed
-                                // Show an error message or log the error
-                            }
-                        }
-                    });
+            newExpenseRef.setValue(expense);
 
             Toast.makeText(getActivity(), "Expense added successfully!", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getActivity(), "Failed to add expense. Please check the form.", Toast.LENGTH_SHORT).show();
         }
+
+
+
     }
 
 
-
-    public Expense getNewExpense(View view) {
-
-        EditText inWhere = view.findViewById(R.id.inWhere);
-        EditText inCategory = view.findViewById(R.id.inCategory);
-        EditText inPrice = view.findViewById(R.id.inPrice);
-
-        RadioGroup inRadioGroup = view.findViewById(R.id.radioGroupOptions);
-        if (inRadioGroup == null) {
-            // Handle the case where the view is not found
-            // For example, show a toast message or log an error
-            return null;
-        }
-
-        // Radio Btn
-        int selectedRadioBtnId = inRadioGroup.getCheckedRadioButtonId();
-        String inEssentials = "not provided";
-        if (selectedRadioBtnId != -1) {
-            RadioButton selectedRadioBtn = view.findViewById(selectedRadioBtnId);
-            if (selectedRadioBtn != null) {
-                inEssentials = selectedRadioBtn.getText().toString();
-            }
-        }
+    public Expense getNewExpense() {
 
         // Date Picker
-        DatePicker datePicker = view.findViewById(R.id.inDate);
+
         int year = datePicker.getYear();
         int month = datePicker.getMonth();
         int dayOfMonth = datePicker.getDayOfMonth();
@@ -174,12 +166,25 @@ public class AddExpenses extends Fragment {
         calendar.set(year, month, dayOfMonth);
         Date selectedTime = calendar.getTime();
 
+        // Convert the EditText inputs to strings
         String whereText = inWhere.getText().toString();
         String categoryText = inCategory.getText().toString();
         String dateText = dateIn;
-        String essentialsText = inEssentials;
+        String essentialsText = "not provided";
         String priceText = inPrice.getText().toString();
 
+        // Radio Btn
+        if (inRadioGroup != null) {
+            int selectedRadioBtnId = inRadioGroup.getCheckedRadioButtonId();
+            if (selectedRadioBtnId != -1) {
+                RadioButton selectedRadioBtn = getView().findViewById(selectedRadioBtnId);
+                if (selectedRadioBtn != null) {
+                    essentialsText = selectedRadioBtn.getText().toString();
+                }
+            }
+        }
+
+        // Expense Object create
         Expense newExpense = new Expense();
         newExpense.setWhere(whereText);
         newExpense.setCategory(categoryText);
@@ -187,18 +192,25 @@ public class AddExpenses extends Fragment {
         newExpense.setDate(dateText);
         newExpense.setPrice(priceText);
 
+        // Assuming you have a method called getFinalExpense() that returns the user ID
+        //String userId = getFinalExpense();
+        //newExpense.setId(userId);
+
+        return newExpense;
+    }
+
+    public String getFinalExpense() {
         // Get the activity that is currently hosting the fragment (MainActivity)
         MainActivity mainActivity = (MainActivity) getActivity();
         if (mainActivity != null) {
             String userId = mainActivity.getUserId();
-            newExpense.setId(userId);
-            // Use the userId as needed
-            return newExpense;
+            Log.d("AddExpenses", "getFinalExpense: " + userId);
+            return userId;
         } else {
             // Handle the case when the activity is not available or not MainActivity
+            Log.d("AddExpenses", "getFinalExpense: MainActivity is null");
             return null;
         }
     }
-
 
 }

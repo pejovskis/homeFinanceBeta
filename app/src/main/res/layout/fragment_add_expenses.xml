@@ -95,7 +95,7 @@
 
     </LinearLayout>
 
-    <!-- Buttons to be shown when needed -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

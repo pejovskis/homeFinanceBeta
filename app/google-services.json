@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "56521228295",
+    "firebase_url": "https://homefinancebeta-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "homefinancebeta",
     "storage_bucket": "homefinancebeta.appspot.com"
   },
@@ -14,7 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "56521228295-6av4vlv66cjek3ggho7hamr9ssd1nhhr.apps.googleusercontent.com",
+          "client_id": "56521228295-63pbv5sro6k6rjgegj0ubb0lk4no21jj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.homefinancebeta",
+            "certificate_hash": "d0764e05e3da5b5c39fa21bf00a3f7c8311f7e79"
+          }
+        },
+        {
+          "client_id": "56521228295-grk60l4oho0ngabi2rrj0bpc87ujmku4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
