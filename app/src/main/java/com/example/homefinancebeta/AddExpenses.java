@@ -3,6 +3,7 @@ package com.example.homefinancebeta;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavHostController;
@@ -127,30 +128,31 @@ public class AddExpenses extends Fragment {
     }
 
     public void addNewExpense() {
-
         Expense expense = getNewExpense();
 
         Log.d("HERE: HERE: HERE: HERE: HERE: " , expense.getWhere() +
                 " " + expense.getCategory() + " " + expense.getDate() +
                 " " + expense.getId() + " " + expense.getPrice() + " " + expense.getEssentials());
 
-
         if (expense != null) {
-            // Write a message to the database
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference expensesRef = database.getReference("expenses");
+            // Get the user ID from MainActivity
+            String userId = getFinalExpense();
 
-            DatabaseReference newExpenseRef = expensesRef.push();
+            if (userId != null) {
+                // Write a message to the database
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference expensesRef = database.getReference("Users").child(userId).child("expenses");
 
-            newExpenseRef.setValue(expense);
+                DatabaseReference newExpenseRef = expensesRef.push();
+                newExpenseRef.setValue(expense);
 
-            Toast.makeText(getActivity(), "Expense added successfully!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Expense added successfully!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getActivity(), "Failed to add expense. User ID not available.", Toast.LENGTH_SHORT).show();
+            }
         } else {
             Toast.makeText(getActivity(), "Failed to add expense. Please check the form.", Toast.LENGTH_SHORT).show();
         }
-
-
-
     }
 
 
@@ -192,23 +194,20 @@ public class AddExpenses extends Fragment {
         newExpense.setDate(dateText);
         newExpense.setPrice(priceText);
 
-        // Assuming you have a method called getFinalExpense() that returns the user ID
-        //String userId = getFinalExpense();
-        //newExpense.setId(userId);
-
         return newExpense;
     }
 
     public String getFinalExpense() {
-        // Get the activity that is currently hosting the fragment (MainActivity)
-        MainActivity mainActivity = (MainActivity) getActivity();
-        if (mainActivity != null) {
+        // Get the activity that is currently hosting the fragment
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        if (activity != null) {
+            SecondActivity mainActivity = (SecondActivity) activity;
             String userId = mainActivity.getUserId();
             Log.d("AddExpenses", "getFinalExpense: " + userId);
             return userId;
         } else {
-            // Handle the case when the activity is not available or not MainActivity
-            Log.d("AddExpenses", "getFinalExpense: MainActivity is null");
+            // Handle the case when the activity is not available
+            Log.d("AddExpenses", "getFinalExpense: Activity is null");
             return null;
         }
     }

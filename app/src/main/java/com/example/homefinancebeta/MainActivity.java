@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
     ProgressDialog progressDialog;
 
+    public static String userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,16 +132,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-    }
-
-    // Add this method to get the user ID
-    public String getUserId() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            return user.getUid();
-        } else {
-            return null; // User not signed in
-        }
     }
 
 }
