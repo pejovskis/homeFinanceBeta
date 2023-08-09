@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragmentMenu"
     android:layout_width="match_parent"
@@ -12,21 +11,53 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="10">
 
         <Button
-        android:id="@+id/btnAddExpenses"
-        android:layout_width="256dp"
-        android:layout_height="wrap_content"
-        android:text="add new Expenses"
-        android:onClick="navigateToAddExpensesFragment" />
+            android:id="@+id/btnAddExpenses"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:onClick="navigateToAddExpensesFragment"
+            android:text="add new Expenses" />
 
         <Button
             android:id="@+id/btnShowExpenses"
             android:layout_width="256dp"
             android:layout_height="wrap_content"
-            android:text="Show Expenses"
-            android:onClick="navigateToShowExpensesFragment" />
+            android:onClick="navigateToShowExpensesFragment"
+            android:text="Show Expenses" />
+
+        <Button
+            android:id="@+id/btnAddNewSalary"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:onClick="navigateToAddExpensesFragment"
+            android:text="Add New Salary" />
+
+        <Button
+            android:id="@+id/btnShowSalaries"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:onClick="navigateToShowExpensesFragment"
+            android:text="Show Salaries" />
+
+        <Button
+            android:id="@+id/btnShowCalculations"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:onClick="navigateToAddExpensesFragment"
+            android:text="Calculations" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:onClick="navigateToShowExpensesFragment"
+            android:text="Logout" />
 
     </LinearLayout>
 
