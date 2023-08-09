@@ -1,6 +1,7 @@
 package com.example.homefinancebeta;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,8 +79,6 @@ public class ShowExpenses extends Fragment {
 
         Button btnBack = view.findViewById(R.id.btnBack);
 
-        TableLayout tableLayoutExpenses = view.findViewById(R.id.tableLayoutExpenses);
-
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,7 +92,7 @@ public class ShowExpenses extends Fragment {
         return view;
     }
 
-    public String getUserId() {
+    private String getUserId() {
         // Get the activity that is currently hosting the fragment
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null) {
@@ -110,14 +108,15 @@ public class ShowExpenses extends Fragment {
 
         String userId = getUserId();
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://homefinance-394622-default-rtdb.europe-west1.firebasedatabase.app/");
         DatabaseReference expensesRef = database.getReference("Users").child(userId).child("expenses");
         expensesRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Clear any previous data from the table
                 TableLayout tableLayoutExpenses = view.findViewById(R.id.tableLayoutExpenses);
-                //tableLayoutExpenses.removeAllViews();
+
+                addTableHeaders(tableLayoutExpenses);
 
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot expenseSnapshot : dataSnapshot.getChildren()) {
@@ -140,9 +139,10 @@ public class ShowExpenses extends Fragment {
     private void addNoDataMessage(TableLayout tableLayout) {
         TableRow row = new TableRow(requireContext());
 
-        TextView tvNoData = createTextView("No expenses found.");
+        TextView tvNoData = createTextView("No expenses found.", 20, Gravity.CENTER);
         tvNoData.setGravity(Gravity.CENTER);
         tvNoData.setTextColor(Color.RED);
+        tvNoData.setTextSize(25);
 
         TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(
                 TableRow.LayoutParams.MATCH_PARENT,
@@ -156,16 +156,44 @@ public class ShowExpenses extends Fragment {
         tableLayout.addView(row);
     }
 
+    private void addTableHeaders(TableLayout tableLayout) {
+        TableRow row = new TableRow(requireContext());
+
+        int backgroundColor = Color.LTGRAY;
+        int textSize = 18;
+        int textStyle = Typeface.BOLD;
+        int position = Gravity.CENTER;
+
+        row.addView(createHeaderTextView("Where", backgroundColor, textSize, textStyle, position));
+        row.addView(createHeaderTextView("Essentials", backgroundColor, textSize, textStyle, position));
+        row.addView(createHeaderTextView("Category", backgroundColor, textSize, textStyle, position));
+        row.addView(createHeaderTextView("Date", backgroundColor, textSize, textStyle, position));
+        row.addView(createHeaderTextView("Price", backgroundColor, textSize, textStyle, position));
+
+        tableLayout.addView(row);
+    }
+
+    private View createHeaderTextView(String text, int backgroundColor, int textSize, int textStyle, int position) {
+        TextView textView = createTextView(text, textSize, position);
+        textView.setBackgroundColor(backgroundColor);
+        textView.setTypeface(null, textStyle);
+        return textView;
+    }
+
+
     private void addExpenseToTable(TableLayout tableLayout, Expense expense) {
         // Create a new TableRow
         TableRow row = new TableRow(requireContext());
 
+        int textSize = 16;
+        int position = Gravity.CENTER;
+
         // Create TextViews to display each attribute of the expense
-        TextView tvWhere = createTextView(expense.getWhere());
-        TextView tvEssentials = createTextView(expense.getEssentials());
-        TextView tvCategory = createTextView(expense.getCategory());
-        TextView tvDate = createTextView(expense.getDate());
-        TextView tvPrice = createTextView(expense.getPrice());
+        TextView tvWhere = createTextView(expense.getWhere(), textSize, position);
+        TextView tvEssentials = createTextView(expense.getEssentials(), textSize, position);
+        TextView tvCategory = createTextView(expense.getCategory(), textSize, position);
+        TextView tvDate = createTextView(expense.getDate(), textSize, position);
+        TextView tvPrice = createTextView(expense.getPrice(), textSize, position);
 
         // Add TextViews to the TableRow
         row.addView(tvWhere);
@@ -178,13 +206,13 @@ public class ShowExpenses extends Fragment {
         tableLayout.addView(row);
     }
 
-    private TextView createTextView(String text) {
+    private TextView createTextView(String text, int textSize, int position) {
         TextView textView = new TextView(requireContext());
+
         textView.setText(text);
-        textView.setLayoutParams(new TableRow.LayoutParams(
-                TableRow.LayoutParams.WRAP_CONTENT,
-                TableRow.LayoutParams.WRAP_CONTENT
-        ));
+        textView.setTextSize(textSize);
+        textView.setGravity(position);
+
         return textView;
     }
 

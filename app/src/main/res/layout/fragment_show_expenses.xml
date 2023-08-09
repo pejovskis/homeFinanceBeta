@@ -15,40 +15,6 @@
         android:dividerHeight="1dp"
         android:padding="3dip"
         android:stretchColumns="*">
-
-        <TableRow
-            android:background="@drawable/table_row_border">
-
-            <TextView
-                android:background="@color/gray"
-                android:gravity="right"
-                android:padding="3dip"
-                android:text="Where" />
-
-            <TextView
-                android:background="@color/gray"
-                android:gravity="center"
-                android:padding="3dip"
-                android:text="Essentials" />
-
-            <TextView
-                android:background="@color/gray"
-                android:gravity="center"
-                android:padding="3dip"
-                android:text="Category" />
-
-            <TextView
-                android:background="@color/gray"
-                android:gravity="center"
-                android:padding="3dip"
-                android:text="Date" />
-
-            <TextView
-                android:background="@color/gray"
-                android:gravity="center"
-                android:padding="3dip"
-                android:text="Price" />
-        </TableRow>
     </TableLayout>
 
     <RelativeLayout
