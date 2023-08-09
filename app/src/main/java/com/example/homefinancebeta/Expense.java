@@ -7,30 +7,20 @@ import java.util.Date;
 public class Expense {
 
     //fields
-    private String id;
     private String where;
     private String category;
     private String essentials;
     private String date;
     private String price;
 
-    public Expense(){}
+    public Expense() {}
 
-    public Expense(String id, String where, String category, String essentials, String date, String price) {
-        this.id = id;
+    public Expense(String where, String category, String essentials, String date, String price) {
         this.where = where;
         this.category = category;
         this.essentials = essentials;
         this.date = date;
         this.price = price;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getWhere() {

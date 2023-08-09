@@ -16,6 +16,15 @@
         <action
             android:id="@+id/action_menuFragment_to_showExpenses"
             app:destination="@id/showExpenses" />
+        <action
+            android:id="@+id/action_menuFragment_to_addNewSalary"
+            app:destination="@id/addNewSalary" />
+        <action
+            android:id="@+id/action_menuFragment_to_showSalaries"
+            app:destination="@id/showSalaries" />
+        <action
+            android:id="@+id/action_menuFragment_to_calculationsFragment"
+            app:destination="@id/calculationsFragment" />
     </fragment>
 
     <fragment
@@ -28,5 +37,18 @@
         android:name="com.example.homefinancebeta.ShowExpenses"
         android:label="fragment_show_expenses"
         tools:layout="@layout/fragment_show_expenses" />
+    <fragment
+        android:id="@+id/addNewSalary"
+        android:name="com.example.homefinancebeta.AddNewSalary"
+        android:label="AddNewSalary" />
+    <fragment
+        android:id="@+id/showSalaries"
+        android:name="com.example.homefinancebeta.ShowSalaries"
+        android:label="fragment_show_salaries"
+        tools:layout="@layout/fragment_show_salaries" />
+    <fragment
+        android:id="@+id/calculationsFragment"
+        android:name="com.example.homefinancebeta.CalculationsFragment"
+        android:label="CalculationsFragment" />
 
 </navigation>

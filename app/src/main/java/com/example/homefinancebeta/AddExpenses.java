@@ -2,14 +2,11 @@ package com.example.homefinancebeta;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.NavHostController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +15,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -128,7 +122,7 @@ public class AddExpenses extends Fragment {
 
         if (expense != null) {
             // Get the user ID from MainActivity
-            String userId = getFinalExpense();
+            String userId = getUserIdFromFireBase();
 
             if (userId != null) {
                 // Write a message to the database
@@ -178,27 +172,19 @@ public class AddExpenses extends Fragment {
         }
 
         // Expense Object create
-        Expense newExpense = new Expense();
-        newExpense.setWhere(whereText);
-        newExpense.setCategory(categoryText);
-        newExpense.setEssentials(essentialsText);
-        newExpense.setDate(dateText);
-        newExpense.setPrice(priceText);
+        Expense newExpense = new Expense(whereText, categoryText, essentialsText, dateText, priceText);
 
         return newExpense;
     }
 
-    public String getFinalExpense() {
+    private String getUserIdFromFireBase() {
         // Get the activity that is currently hosting the fragment
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null) {
             SecondActivity mainActivity = (SecondActivity) activity;
             String userId = mainActivity.getUserId();
-            Log.d("AddExpenses", "getFinalExpense: " + userId);
             return userId;
         } else {
-            // Handle the case when the activity is not available
-            Log.d("AddExpenses", "getFinalExpense: Activity is null");
             return null;
         }
     }

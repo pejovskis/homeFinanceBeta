@@ -58,6 +58,9 @@ public class MenuFragment extends Fragment {
 
         Button btnAddExpenses = view.findViewById(R.id.btnAddExpenses);
         Button btnShowExpenses = view.findViewById(R.id.btnShowExpenses);
+        Button btnAddNewSalary = view.findViewById(R.id.btnAddNewSalary);
+        Button btnShowSalaries = view.findViewById(R.id.btnShowSalaries);
+        Button btnShowCalculations = view.findViewById(R.id.btnShowCalculations);
 
         btnAddExpenses.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +76,27 @@ public class MenuFragment extends Fragment {
             }
         });
 
+        btnAddNewSalary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigateToAddNewSalaryFragment();
+            }
+        });
+
+        btnShowSalaries.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigateToShowSalariesFragment();
+            }
+        });
+
+        btnShowCalculations.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navigateToShowCalculationsFragment();
+            }
+        });
+
         return view;
     }
 
@@ -84,6 +108,21 @@ public class MenuFragment extends Fragment {
     private void navigateToShowExpensesFragment() {
         NavHostFragment.findNavController(this)
                 .navigate(R.id.action_menuFragment_to_showExpenses);
+    }
+
+    private void navigateToAddNewSalaryFragment() {
+        NavHostFragment.findNavController(this)
+                .navigate(R.id.action_menuFragment_to_addNewSalary);
+    }
+
+    private void navigateToShowSalariesFragment() {
+        NavHostFragment.findNavController(this)
+                .navigate(R.id.action_menuFragment_to_showSalaries);
+    }
+
+    private void navigateToShowCalculationsFragment() {
+        NavHostFragment.findNavController(this)
+                .navigate(R.id.action_menuFragment_to_calculationsFragment);
     }
 
 }
