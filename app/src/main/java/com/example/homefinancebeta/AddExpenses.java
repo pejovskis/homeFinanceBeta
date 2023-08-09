@@ -132,7 +132,7 @@ public class AddExpenses extends Fragment {
 
             if (userId != null) {
                 // Write a message to the database
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                FirebaseDatabase database = FirebaseDatabase.getInstance("https://homefinance-394622-default-rtdb.europe-west1.firebasedatabase.app/");
                 DatabaseReference expensesRef = database.getReference("Users").child(userId).child("expenses");
 
                 DatabaseReference newExpenseRef = expensesRef.push();

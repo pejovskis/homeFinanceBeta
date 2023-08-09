@@ -1,42 +1,41 @@
 {
   "project_info": {
-    "project_number": "56521228295",
-    "firebase_url": "https://homefinancebeta-default-rtdb.europe-west1.firebasedatabase.app",
-    "project_id": "homefinancebeta",
-    "storage_bucket": "homefinancebeta.appspot.com"
+    "project_number": "163729774514",
+    "project_id": "homefinance-394622",
+    "storage_bucket": "homefinance-394622.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:56521228295:android:be15a8ac127c4f4b386aa2",
+        "mobilesdk_app_id": "1:163729774514:android:9e1b3bf46ae54e208cf6ab",
         "android_client_info": {
           "package_name": "com.example.homefinancebeta"
         }
       },
       "oauth_client": [
         {
-          "client_id": "56521228295-63pbv5sro6k6rjgegj0ubb0lk4no21jj.apps.googleusercontent.com",
+          "client_id": "163729774514-ep89kednke1ecruoovcilid3fs7i2nm5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.homefinancebeta",
-            "certificate_hash": "d0764e05e3da5b5c39fa21bf00a3f7c8311f7e79"
+            "certificate_hash": "2d65b0deedefe4cdeb7bb7eca571fa63230a730c"
           }
         },
         {
-          "client_id": "56521228295-grk60l4oho0ngabi2rrj0bpc87ujmku4.apps.googleusercontent.com",
+          "client_id": "163729774514-o35g0af6pa3hetu91gevtpq3747et7ib.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC3M93a24JWd6stjp1Z0r-IH5UQ7OEQxic"
+          "current_key": "AIzaSyBjQOxuHEDZRbdH-9L5cEqnmAZXJ6yhJ6M"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "56521228295-6av4vlv66cjek3ggho7hamr9ssd1nhhr.apps.googleusercontent.com",
+              "client_id": "163729774514-o35g0af6pa3hetu91gevtpq3747et7ib.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
