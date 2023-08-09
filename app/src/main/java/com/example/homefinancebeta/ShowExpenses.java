@@ -43,7 +43,6 @@ public class ShowExpenses extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    public static List<Expense> expenseList = new ArrayList<>();
 
     public ShowExpenses() {
         // Required empty public constructor
@@ -128,7 +127,6 @@ public class ShowExpenses extends Fragment {
                         Expense expense = expenseSnapshot.getValue(Expense.class);
 
                         addExpenseToTable(tableLayoutExpenses, expense);
-                        expenseList.add(expense);
                     }
                 } else {
                     addNoDataMessage(tableLayoutExpenses);

@@ -10,9 +10,9 @@ public class Salary {
     public Salary() {}
 
     public Salary(String employer, String category, String date, String amount) {
-        Employer = employer;
-        Category = category;
-        Date = date;
+        this.Employer = employer;
+        this.Category = category;
+        this.Date = date;
         this.amount = amount;
     }
 

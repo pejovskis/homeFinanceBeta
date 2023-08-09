@@ -5,12 +5,74 @@
     android:layout_height="match_parent"
     tools:context=".CalculationsFragment">
 
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="back" />
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:layout_margin="10dp"
+            android:text="Weekly expenses estimate:" />
 
+        <TextView
+            android:id="@+id/showWeeklyCalculation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:layout_margin="10dp"
+            android:text="amount" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:layout_margin="10dp"
+            android:text="Monthly expenses estimate:" />
+
+        <TextView
+            android:id="@+id/showMonthlyCalculation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:layout_margin="10dp"
+            android:text="amount" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:layout_margin="10dp"
+            android:text="Year expenses estimate:" />
+
+        <TextView
+            android:id="@+id/showYearlyCalculation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:layout_margin="10dp"
+            android:text="amount" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="back" />
+
+    </LinearLayout>
 
 </FrameLayout>

@@ -42,7 +42,6 @@ public class ShowSalaries extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    public static List<Salary> salaryList = new ArrayList<>();
 
     public ShowSalaries() {
         // Required empty public constructor
@@ -114,7 +113,6 @@ public class ShowSalaries extends Fragment {
                         Salary salary = expenseSnapshot.getValue(Salary.class);
 
                         addSalaryToTable(tableLayoutSalaries, salary);
-                        salaryList.add(salary);
                     }
                 } else {
                     addNoDataMessage(tableLayoutSalaries);
