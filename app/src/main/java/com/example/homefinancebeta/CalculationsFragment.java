@@ -1,20 +1,16 @@
 package com.example.homefinancebeta;
 
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TableLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,41 +20,24 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CalculationsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class CalculationsFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    // Constants and parameters
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private TextView tvWeeklyEstimate;
-    private static List<Expense> expenseList;
-    private static List<Salary> salaryList;
-    private String expenseFinal = "";
-    private String salaryFinal = "";
+
+    // Variables to hold the retrieved expenses and salaries
+    private List<Expense> retrievedExpenseList = new ArrayList<>();
+    private List<Salary> retrievedSalaryList = new ArrayList<>();
 
     public CalculationsFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CalculationsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static CalculationsFragment newInstance(String param1, String param2) {
         CalculationsFragment fragment = new CalculationsFragment();
         Bundle args = new Bundle();
@@ -78,86 +57,46 @@ public class CalculationsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_calculations, container, false);
-
-        Button btnBackToPreviousMenu = view.findViewById(R.id.btnBack);
-        tvWeeklyEstimate = view.findViewById(R.id.showWeeklyCalculation);
-        TextView tvMontlyEstimate = view.findViewById(R.id.showMonthlyCalculation);
-        TextView tvYearEstimate = view.findViewById(R.id.showYearlyCalculation);
-
-        retrieveDbInfo(view);
-
-        tvWeeklyEstimate.setText(weeklyCalculation());
-
-
-        btnBackToPreviousMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navigateToPreviousMenu();
-            }
-        });
-
-
+        initializeUI(view);
+        retrieveDbInfo();
         return view;
     }
 
-    public String weeklyCalculation() {
-
-        double expenseSum = 0;
-        double salarySum = 0;
-
-        List<Expense> expenses = expenseList;
-        List<Salary> salaries = salaryList;
-
-        for (Expense expense : expenses) {
-            String price = expense.getPrice();
-            if (price != null && !price.trim().isEmpty()) { // Check if price is not null and not empty
-                double getExpenseAmount = Double.parseDouble(price);
-                expenseSum += getExpenseAmount;
-            } else {
-                // Optionally log or handle the case where the price is null or empty
-            }
-        }
-
-        for (Salary salary : salaries) {
-            String amount = salary.getAmount();
-            if (amount != null && !amount.trim().isEmpty()) { // Check if price is not null and not empty
-                double getSalaryAmount = Double.parseDouble(amount);
-                salarySum += getSalaryAmount;
-            } else {
-                // Optionally log or handle the case where the price is null or empty
-            }
-        }
-
-        Log.d("Salary", "Amount: " + salarySum);
-
-        String weeklyEstimate = "Netto Amount: " + (salarySum - expenseSum);
-
-        return weeklyEstimate;
+    private void initializeUI(View view) {
+        Button btnBackToPreviousMenu = view.findViewById(R.id.btnBack);
+        tvWeeklyEstimate = view.findViewById(R.id.showWeeklyCalculation);
+        btnBackToPreviousMenu.setOnClickListener(view1 -> navigateToPreviousMenu());
     }
 
-    private void retrieveDbInfo(View view) {
-        String userId = getUserId();
+    private double calculateSum(List<String> amounts) {
+        return amounts.stream().filter(amount -> amount != null && !amount.trim().isEmpty())
+                .mapToDouble(Double::parseDouble).sum();
+    }
 
-        expenseList = new ArrayList<>();
-        salaryList = new ArrayList<>();
+    public String weeklyCalculation() {
+        double expenseSum = calculateSum(retrievedExpenseList.stream().map(Expense::getPrice).collect(Collectors.toList()));
+        double salarySum = calculateSum(retrievedSalaryList.stream().map(Salary::getAmount).collect(Collectors.toList()));
+        return "Netto Amount: " + (salarySum - expenseSum);
+    }
 
+    private void retrieveDbInfo() {
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://homefinance-394622-default-rtdb.europe-west1.firebasedatabase.app/");
-        DatabaseReference expensesRef = database.getReference("Users").child(userId).child("expenses");
-        DatabaseReference salaryRef = database.getReference("Users").child(userId).child("salaries");
+        retrieveExpenses(database);
+        retrieveSalaries(database);
+    }
 
+    private void retrieveExpenses(FirebaseDatabase database) {
+        DatabaseReference expensesRef = database.getReference("Users").child(getUserId()).child("expenses");
         expensesRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot expenseSnapshot : dataSnapshot.getChildren()) {
                         Expense expense = expenseSnapshot.getValue(Expense.class);
-                        expenseList.add(expense);
+                        retrievedExpenseList.add(expense);
                     }
-                    expenseFinal = weeklyCalculation();
                     calculateFinalAmount();
                 }
             }
@@ -167,16 +106,18 @@ public class CalculationsFragment extends Fragment {
                 // Handle any errors that may occur while retrieving data
             }
         });
+    }
 
+    private void retrieveSalaries(FirebaseDatabase database) {
+        DatabaseReference salaryRef = database.getReference("Users").child(getUserId()).child("salaries");
         salaryRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot salarySnapshot : dataSnapshot.getChildren()) {
                         Salary salary = salarySnapshot.getValue(Salary.class);
-                        salaryList.add(salary);
+                        retrievedSalaryList.add(salary);
                     }
-                    salaryFinal = weeklyCalculation();
                     calculateFinalAmount();
                 }
             }
@@ -189,20 +130,17 @@ public class CalculationsFragment extends Fragment {
     }
 
     private void calculateFinalAmount() {
-        if (!expenseFinal.isEmpty() && !salaryFinal.isEmpty()) {
-            double calculation = (Double.parseDouble(salaryFinal.replace("Netto Amount: ", "")) - Double.parseDouble(expenseFinal.replace("Netto Amount: ", "")));
-            String resultString = "Amount: " + calculation;
+        if (!retrievedExpenseList.isEmpty() && !retrievedSalaryList.isEmpty()) {
+            String resultString = weeklyCalculation();
             tvWeeklyEstimate.setText(resultString);
         }
     }
 
     private String getUserId() {
-        // Get the activity that is currently hosting the fragment
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null) {
             SecondActivity mainActivity = (SecondActivity) activity;
-            String userId = mainActivity.getUserId();
-            return userId;
+            return mainActivity.getUserId();
         } else {
             return null;
         }

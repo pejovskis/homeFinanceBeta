@@ -1,5 +1,6 @@
 package com.example.homefinancebeta;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.fragment.NavHostFragment;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 
 /**
@@ -61,6 +64,7 @@ public class MenuFragment extends Fragment {
         Button btnAddNewSalary = view.findViewById(R.id.btnAddNewSalary);
         Button btnShowSalaries = view.findViewById(R.id.btnShowSalaries);
         Button btnShowCalculations = view.findViewById(R.id.btnShowCalculations);
+        Button btnLogOut = view.findViewById(R.id.btnLogout);
 
         btnAddExpenses.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +101,13 @@ public class MenuFragment extends Fragment {
             }
         });
 
+        btnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userLogOut();
+            }
+        });
+
         return view;
     }
 
@@ -123,6 +134,13 @@ public class MenuFragment extends Fragment {
     private void navigateToShowCalculationsFragment() {
         NavHostFragment.findNavController(this)
                 .navigate(R.id.action_menuFragment_to_calculationsFragment);
+    }
+
+    private void userLogOut() {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
 }
